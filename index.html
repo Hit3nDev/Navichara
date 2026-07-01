@@ -712,6 +712,77 @@
   }
   .ai-teaser-link:hover { color: #fff; }
 
+  /* ── LEGAL PAGE ── */
+  .legal-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 3.5rem;
+  }
+  .legal-tab {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+    padding: 0.55rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .legal-tab:hover { color: #fff; border-color: rgba(255,255,255,0.25); }
+  .legal-tab.active {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.3);
+  }
+  .legal-section { display: none; }
+  .legal-section.active { display: block; animation: fadeUp 0.5s ease forwards; }
+  .legal-section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(1.8rem, 3.6vw, 2.75rem);
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .legal-section .legal-date {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 2rem;
+  }
+  .legal-section h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+    margin: 2rem 0 0.75rem;
+  }
+  .legal-section p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .legal-list { list-style: none; margin: 0.75rem 0 1rem; }
+  .legal-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+  }
+  .legal-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+  }
+
 
   /* ════════════════════════════════════════════
      COMPREHENSIVE RESPONSIVE STYLES
@@ -919,6 +990,18 @@
     .belief-heading { font-size: 1.2rem !important; line-height: 1.6 !important; }
   }
 
+  /* ── LEGAL PAGE responsive ── */
+  @media (max-width: 768px) {
+    #page-legal h1 { font-size: clamp(2rem, 8vw, 3.5rem) !important; margin-bottom: 0.75rem !important; }
+    #page-legal > div { padding-top: 6rem !important; padding-bottom: 4rem !important; }
+    .legal-tabs { gap: 0.5rem !important; margin-bottom: 2.5rem !important; }
+    .legal-tab { font-size: 0.75rem !important; padding: 0.5rem 1rem !important; }
+  }
+  @media (max-width: 480px) {
+    #page-legal > div { padding-top: 5.5rem !important; }
+    #page-legal h1 { font-size: clamp(1.8rem, 9vw, 2.5rem) !important; }
+  }
+
   /* ── CONTACT PAGE responsive ── */
   @media (max-width: 768px) {
     .contact-cards { grid-template-columns: 1fr !important; gap: 1rem !important; margin-bottom: 2.5rem !important; }
@@ -963,18 +1046,19 @@
 
 <!-- ── NAVBAR ── -->
 <nav id="navbar">
-  <a class="nav-logo-outside" href="#" onclick="navigate('home')">
+  <a class="nav-logo-outside" href="#" onclick="navigate('home');return false;">
     <img src="https://res.cloudinary.com/dajekho84/image/upload/v1779911501/WhatsApp_Image_2026-05-27_at_1.56.38_PM_d7g3v3.png" alt="Navichara" style="height:120px;width:auto;object-fit:contain;display:block;">
   </a>
   <div class="nav-inner liquid-glass">
     <div class="nav-links">
-      <a href="#" onclick="navigate('home')">Home</a>
-      <a href="#" onclick="navigate('company')">Company</a>
-      <a href="#" onclick="navigate('ai')">AI</a>
-      <a href="#" onclick="navigate('solutions')">Solutions</a>
-      <a href="#" onclick="navigate('contact')">Contact</a>
+      <a href="#" onclick="navigate('home');return false;">Home</a>
+      <a href="#" onclick="navigate('company');return false;">Company</a>
+      <a href="#" onclick="navigate('ai');return false;">AI</a>
+      <a href="#" onclick="navigate('solutions');return false;">Solutions</a>
+      <a href="#" onclick="navigate('contact');return false;">Contact</a>
     </div>
     <div class="nav-right">
+      <a href="#" class="nav-cta-text" onclick="navigate('legal');return false;" style="opacity:0.55;">Legal</a>
       <button class="mob-menu-btn" onclick="openMobMenu()" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -987,11 +1071,12 @@
   <button class="mob-close-btn" onclick="closeMobMenu()" aria-label="Close menu">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="#" onclick="closeMobMenu();navigate('home')">Home</a>
-  <a href="#" onclick="closeMobMenu();navigate('company')">Company</a>
-  <a href="#" onclick="closeMobMenu();navigate('ai')">AI</a>
-  <a href="#" onclick="closeMobMenu();navigate('solutions')">Solutions</a>
-  <a href="#" onclick="closeMobMenu();navigate('contact')">Contact</a>
+  <a href="#" onclick="closeMobMenu();navigate('home');return false;">Home</a>
+  <a href="#" onclick="closeMobMenu();navigate('company');return false;">Company</a>
+  <a href="#" onclick="closeMobMenu();navigate('ai');return false;">AI</a>
+  <a href="#" onclick="closeMobMenu();navigate('solutions');return false;">Solutions</a>
+  <a href="#" onclick="closeMobMenu();navigate('contact');return false;">Contact</a>
+  <a href="#" onclick="closeMobMenu();navigate('legal');return false;">Legal</a>
 </div>
 
 <!-- ════════════════ PAGE: HOME ════════════════ -->
@@ -1034,7 +1119,7 @@
           <p class="label-tag">Our Approach</p>
           <p>We believe in high-value, low-cost technology that extends access to people who were previously left behind. Every system we build begins with a real problem and ends with a deployable solution.</p>
         </div>
-        <a class="btn-pill liquid-glass" href="#" onclick="navigate('company')" style="white-space:nowrap;flex-shrink:0;">
+        <a class="btn-pill liquid-glass" href="#" onclick="navigate('company');return false;" style="white-space:nowrap;flex-shrink:0;">
           Learn more
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </a>
@@ -1066,7 +1151,7 @@
             <div class="divider" style="margin-bottom:1rem;"></div>
             <p>Connected wearables and intelligent field systems that create new interfaces between people and their environment.</p>
           </div>
-          <a class="ai-teaser-link reveal" href="#" onclick="navigate('ai')">
+          <a class="ai-teaser-link reveal" href="#" onclick="navigate('ai');return false;">
             We don't sell AI hype — we build AI capability. Explore our AI expertise
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
@@ -1085,7 +1170,7 @@
       <div class="sol-grid">
         <div class="sol-card liquid-glass sol-card-anim" 
      style="cursor:pointer;" 
-     onclick="window.location.href='http://motoclub.navichara.com'">
+     onclick="window.location.href='https://motoclub.navichara.com'">
 
   <div class="sol-card-video-wrap">
             <video src="https://res.cloudinary.com/dajekho84/video/upload/v1779401131/Motorcycles_connected_on_map_202605220301_online-video-cutter.com_qu9y71.mp4"
@@ -1102,7 +1187,7 @@
             <p class="sol-desc">A platform built for the two-wheeler community — connecting riders, data, and experiences in ways that haven't existed before.</p>
           </div>
         </div>
-        <div class="sol-card liquid-glass sol-card-anim" style="transition-delay:0.15s;" onclick="window.location.href='https://motoclub.navichara.com'" style="cursor:pointer;">
+        <div class="sol-card liquid-glass sol-card-anim" style="transition-delay:0.15s;cursor:pointer;" onclick="window.location.href='https://palavita.navichara.com'">
           <div class="sol-card-video-wrap">
             <video src="https://res.cloudinary.com/dajekho84/video/upload/v1779401020/Motorcycle_helmet_engineering_de__202605220301_online-video-cutter.com_defhar.mp4"
             muted autoplay loop playsinline preload="auto"></video>
@@ -1129,7 +1214,7 @@
         <p class="label-tag" style="text-align:center;">Get involved</p>
         <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);color:#fff;letter-spacing:-0.02em;margin-bottom:1rem;">Ready to connect?</h2>
         <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.75;margin-bottom:2rem;">Whether you're a potential partner, early customer, or investor — we'd like to hear from you.</p>
-        <a class="btn-primary" href="#" onclick="navigate('contact')">Get in touch</a>
+        <a class="btn-primary" href="#" onclick="navigate('contact');return false;">Get in touch</a>
       </div>
     </div>
   </section>
@@ -1237,7 +1322,7 @@
 
       <div class="divider" style="margin:4rem 0;"></div>
       <div style="text-align:center;">
-        <a class="btn-primary" href="#" onclick="navigate('contact')">Get in touch</a>
+        <a class="btn-primary" href="#" onclick="navigate('contact');return false;">Get in touch</a>
       </div>
     </div>
   </div>
@@ -1413,7 +1498,7 @@
       <div class="divider" style="margin:4rem 0;"></div>
       <div style="text-align:center;">
         <p style="font-size:0.9rem;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;">Ready to build real AI capability — strategically, technically, and operationally?</p>
-        <a class="btn-primary" href="#" onclick="navigate('contact')">Get in touch</a>
+        <a class="btn-primary" href="#" onclick="navigate('contact');return false;">Get in touch</a>
       </div>
     </div>
   </div>
@@ -1461,8 +1546,8 @@
             <p style="font-size:1rem;color:rgba(255,255,255,0.55);line-height:1.85;">Smart wearables, intelligent field systems, and human-machine interaction layers. Hardware that doesn't just collect data — it communicates intent, enhances awareness, and keeps people safer in the physical world.</p>
             <br>
             <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-              <span class="sol-pill-tag" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:0.35rem 1rem;cursor:default;">Moto Club</span>
-              <span class="sol-pill-tag" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:0.35rem 1rem;cursor:default;">Smart Helmet</span>
+              <span class="sol-pill-tag" onclick="window.location.href='https://motoclub.navichara.com'" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:0.35rem 1rem;cursor:pointer;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.color='rgba(255,255,255,0.3)';this.style.borderColor='rgba(255,255,255,0.10)'">Moto Club</span>
+              <span class="sol-pill-tag" onclick="window.location.href='https://palavita.navichara.com'" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:0.35rem 1rem;cursor:pointer;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.color='rgba(255,255,255,0.3)';this.style.borderColor='rgba(255,255,255,0.10)'">Smart Helmet</span>
               <span class="sol-pill-tag" style="font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.10);border-radius:999px;padding:0.35rem 1rem;cursor:default;">Field systems</span>
             </div>
           </div>
@@ -1492,7 +1577,7 @@
       <div class="divider" style="margin-bottom:3rem;"></div>
       <div style="text-align:center;">
         <p style="font-size:0.9rem;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;">Interested in a pilot or partnership?</p>
-        <a class="btn-primary" href="#" onclick="navigate('contact')">Get in touch</a>
+        <a class="btn-primary" href="#" onclick="navigate('contact');return false;">Get in touch</a>
         </div>
       </div>
     </div>
@@ -1532,23 +1617,28 @@
         <p class="label-tag">Early Interest Form</p>
         <div class="divider" style="margin-bottom:2rem;"></div>
         <form class="form-wrap" onsubmit="handleSubmit(event)">
+          <input type="hidden" name="access_key" value="c5e2cb87-86d2-462d-a962-3612b5e4f5c1">
+          <input type="hidden" name="to" value="info@navichara.com">
+          <input type="hidden" name="subject" value="New submission — Navichara Early Interest Form">
+          <input type="hidden" name="from_name" value="Navichara Website">
+          <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-grid">
             <div class="form-field">
               <label>Name</label>
-              <input type="text" placeholder="Your name" required>
+              <input type="text" name="name" placeholder="Your name" required>
             </div>
             <div class="form-field">
               <label>Company</label>
-              <input type="text" placeholder="Organisation">
+              <input type="text" name="company" placeholder="Organisation">
             </div>
           </div>
           <div class="form-field" style="margin-bottom:1rem;">
             <label>Email</label>
-            <input type="email" placeholder="your@email.com" required>
+            <input type="email" name="email" placeholder="your@email.com" required>
           </div>
           <div class="form-field" style="margin-bottom:1rem;">
             <label>Interest Area</label>
-            <select>
+            <select name="interest_area">
               <option value="" disabled selected>Select one…</option>
               <option>Pilot Deployment</option>
               <option>Strategic Partnership</option>
@@ -1558,11 +1648,14 @@
           </div>
           <div class="form-field" style="margin-bottom:1.5rem;">
             <label>Message</label>
-            <textarea placeholder="Tell us a little about your context or requirements…"></textarea>
+            <textarea name="message" placeholder="Tell us a little about your context or requirements…"></textarea>
           </div>
           <button type="submit" class="btn-primary" id="submit-btn" style="width:100%;justify-content:center;padding:0.85rem 2rem;font-size:0.95rem;">
             Submit
           </button>
+          <div id="form-error" style="display:none;text-align:center;padding:1rem;font-size:0.85rem;color:#ff8080;margin-top:1rem;">
+            Something went wrong. Please try again, or email us directly at info@navichara.com.
+          </div>
           <div id="form-success" style="display:none;text-align:center;padding:1.5rem;font-size:0.9rem;color:rgba(255,255,255,0.55);margin-top:1rem;">
             Thank you. We'll be in touch.
           </div>
@@ -1572,26 +1665,241 @@
   </div>
 </div>
 
+<!-- ════════════════ PAGE: LEGAL ════════════════ -->
+<div id="page-legal" class="page">
+  <div style="min-height:100svh;padding-top:8rem;padding-bottom:6rem;">
+    <div class="section-inner" style="max-width:56rem;margin:0 auto;padding:0 1.5rem;" id="legal-content-top">
+      <p class="label-tag inner-hero-label">Legal</p>
+      <h1 class="inner-hero-h1" style="font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,6vw,4.5rem);color:#fff;letter-spacing:-0.02em;line-height:1.05;margin-bottom:1.25rem;">
+        Policies &amp; <em style="font-style:italic;color:rgba(255,255,255,0.45)">disclosures.</em>
+      </h1>
+      <p class="inner-hero-sub" style="font-size:0.95rem;color:rgba(255,255,255,0.4);line-height:1.75;max-width:560px;margin-bottom:3rem;">
+        How we handle your data, the terms that govern this website, and how we communicate about AI and robotics systems.
+      </p>
+
+      <!-- SUB-NAV TABS -->
+      <div class="legal-tabs">
+        <button class="legal-tab active" data-section="privacy" onclick="showLegal('privacy', event)">Privacy Policy</button>
+        <button class="legal-tab" data-section="terms" onclick="showLegal('terms', event)">Terms of Use</button>
+        <button class="legal-tab" data-section="ai-disclaimer" onclick="showLegal('ai-disclaimer', event)">AI &amp; Robotics Disclaimer</button>
+        <button class="legal-tab" data-section="ip" onclick="showLegal('ip', event)">Intellectual Property Notice</button>
+        <button class="legal-tab" data-section="contact" onclick="showLegal('contact', event)">Contact</button>
+      </div>
+
+      <!-- PRIVACY POLICY -->
+      <div class="legal-section active" id="legal-privacy">
+        <h2>Privacy Policy</h2>
+        <p class="legal-date">Effective Date: July 1, 2026</p>
+        <p>Ometaura AI and its affiliated entities, including Navichara ("Company," "we," "our," or "us"), respect your privacy and are committed to protecting your personal information.</p>
+
+        <h3>1. Information We Collect</h3>
+        <p>We may collect:</p>
+        <ul class="legal-list">
+          <li>Name, email address, phone number, company name, and job title</li>
+          <li>Information submitted through contact forms, applications, or inquiries</li>
+          <li>Business and technical requirements shared during consultations</li>
+          <li>Website usage data, analytics, cookies, browser/device metadata, and IP address</li>
+        </ul>
+
+        <h3>2. How We Use Information</h3>
+        <p>We use collected information to:</p>
+        <ul class="legal-list">
+          <li>Respond to inquiries and partnership requests</li>
+          <li>Evaluate pilot, grant, accelerator, or collaboration applications</li>
+          <li>Deliver consulting, advisory, training, and technical services</li>
+          <li>Improve website performance, security, and user experience</li>
+          <li>Communicate relevant updates, offerings, or opportunities</li>
+        </ul>
+
+        <h3>3. Data Sharing</h3>
+        <p>We do not sell personal data. We may share information with:</p>
+        <ul class="legal-list">
+          <li>Service providers and infrastructure vendors</li>
+          <li>Professional advisors</li>
+          <li>Strategic partners involved in project evaluation or delivery</li>
+          <li>Regulatory authorities where legally required</li>
+        </ul>
+
+        <h3>4. Data Security</h3>
+        <p>We implement commercially reasonable administrative, technical, and operational safeguards. No internet transmission or storage system is guaranteed to be fully secure.</p>
+
+        <h3>5. Data Retention</h3>
+        <p>We retain data only as long as reasonably necessary for business, legal, or contractual purposes.</p>
+
+        <h3>6. Your Rights</h3>
+        <p>Subject to applicable law, you may request access, correction, deletion, or restriction of your personal data.</p>
+
+        <h3>7. Contact</h3>
+        <p>For privacy-related inquiries, contact us through the contact details listed on this website.</p>
+      </div>
+
+      <!-- TERMS OF USE -->
+      <div class="legal-section" id="legal-terms">
+        <h2>Terms of Use</h2>
+        <p class="legal-date">Effective Date: July 1, 2026</p>
+        <p>By accessing this website, you agree to these Terms of Use.</p>
+
+        <h3>1. Informational Purpose</h3>
+        <p>All website content is provided for general informational purposes only and does not constitute legal, financial, investment, engineering certification, or regulatory advice.</p>
+
+        <h3>2. Intellectual Property</h3>
+        <p>All text, designs, graphics, technical concepts, architecture descriptions, product specifications, and proprietary materials on this website are owned by Ometaura AI or its licensors and are protected by applicable intellectual property laws.</p>
+        <p>No content may be copied, reproduced, reverse engineered, or commercially exploited without prior written permission.</p>
+
+        <h3>3. No Offer or Commitment</h3>
+        <p>Nothing on this website constitutes:</p>
+        <ul class="legal-list">
+          <li>A binding offer</li>
+          <li>A commitment to partnership</li>
+          <li>Guaranteed grant acceptance</li>
+          <li>Guaranteed pilot deployment</li>
+          <li>Guaranteed investment or commercial engagement</li>
+        </ul>
+        <p>Any engagement requires separate written agreements.</p>
+
+        <h3>4. Limitation of Liability</h3>
+        <p>To the maximum extent permitted by law, Ometaura AI shall not be liable for direct, indirect, incidental, consequential, or business losses arising from use of this website or reliance on its content.</p>
+
+        <h3>5. External Links</h3>
+        <p>Third-party links are provided for convenience. We are not responsible for external content or policies.</p>
+
+        <h3>6. Modifications</h3>
+        <p>We may update these terms at any time without prior notice.</p>
+      </div>
+
+      <!-- AI & ROBOTICS DISCLAIMER -->
+      <div class="legal-section" id="legal-ai-disclaimer">
+        <h2>AI &amp; Robotics Disclaimer</h2>
+        <p>Ometaura AI and Navichara operate in advanced domains including artificial intelligence, robotics, automation, embodied AI, machine learning, computer vision, simulation, and industrial deployment.</p>
+
+        <h3>1. Performance Disclaimer</h3>
+        <p>Performance metrics, throughput estimates, ROI calculations, productivity gains, and automation outcomes shown on this website are illustrative unless explicitly stated otherwise.</p>
+        <p>Actual performance depends on:</p>
+        <ul class="legal-list">
+          <li>Site conditions</li>
+          <li>Product mix</li>
+          <li>Infrastructure</li>
+          <li>Workflow design</li>
+          <li>Human supervision</li>
+          <li>Safety constraints</li>
+          <li>Integration complexity</li>
+        </ul>
+
+        <h3>2. No Guaranteed Outcomes</h3>
+        <p>We do not guarantee:</p>
+        <ul class="legal-list">
+          <li>Specific ROI</li>
+          <li>Operational savings</li>
+          <li>Labor reduction percentages</li>
+          <li>Deployment timelines</li>
+          <li>Accuracy of AI systems under all conditions</li>
+        </ul>
+        <p>AI and robotics systems inherently operate under probabilistic and environment-dependent constraints.</p>
+
+        <h3>3. Safety and Deployment</h3>
+        <p>Robotics deployments require appropriate risk assessment, testing, validation, safety controls, and operational oversight before production use.</p>
+
+        <h3>4. Advisory Disclaimer</h3>
+        <p>Recommendations, workshops, and transformation guidance are advisory in nature and should not be treated as guarantees of business transformation outcomes.</p>
+      </div>
+
+      <!-- INTELLECTUAL PROPERTY NOTICE -->
+      <div class="legal-section" id="legal-ip">
+        <h2>Intellectual Property Notice</h2>
+        <p>All content on this website — including text, logos, product names, designs, graphics, technical concepts, architecture descriptions, product specifications, illustrations, and software — is the property of Ometaura AI, Navichara, or their respective licensors, and is protected under applicable copyright, trademark, trade secret, and other intellectual property laws.</p>
+
+        <h3>1. Ownership</h3>
+        <p>Unless otherwise noted, all trademarks, service marks, trade names, and logos displayed on this website, including "Ometaura AI" and "Navichara," are the property of the Company. Use of these marks without prior written consent is prohibited.</p>
+
+        <h3>2. Restricted Use</h3>
+        <p>No part of this website's content may be:</p>
+        <ul class="legal-list">
+          <li>Copied, reproduced, or republished</li>
+          <li>Reverse engineered or decompiled</li>
+          <li>Used to train third-party AI or machine learning models</li>
+          <li>Modified or used to create derivative works</li>
+          <li>Used for commercial purposes without prior written permission</li>
+        </ul>
+
+        <h3>3. Limited License</h3>
+        <p>You are granted a limited, non-exclusive, non-transferable license to view this website's content for personal, non-commercial, informational purposes only. This license does not extend to any technical concepts, product architecture, or proprietary methodologies described on this website.</p>
+
+        <h3>4. Third-Party Marks</h3>
+        <p>Any third-party trademarks or names referenced on this website belong to their respective owners and are used for identification purposes only. Such references do not imply endorsement or affiliation unless explicitly stated.</p>
+
+        <h3>5. Reporting Concerns</h3>
+        <p>If you believe content on this website infringes your intellectual property rights, please contact us through the details listed on this website so we can review the matter.</p>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="legal-section" id="legal-contact">
+        <h2>Contact</h2>
+        <p>For questions about these policies, or to exercise any rights described above, reach out through our Contact page and we'll route your request to the right team.</p>
+        <p>You can also schedule time directly with us for consultation-related inquiries.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+          <a class="btn-primary" href="#" onclick="navigate('contact');return false;">Go to Contact page</a>
+          <a class="btn-primary" href="https://calendly.com/abhi-ometaura/30min" target="_blank" rel="noopener" style="background:transparent;border:1px solid rgba(255,255,255,0.2);color:#fff;">Schedule a meeting</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- ── FOOTER ── -->
 <footer>
   <img src="https://res.cloudinary.com/dajekho84/image/upload/v1779911501/WhatsApp_Image_2026-05-27_at_1.56.38_PM_d7g3v3.png" alt="Navichara" style="height:160px;width:auto;object-fit:contain;opacity:0.85;">
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;">
+    <a href="#" onclick="goLegal('privacy');return false;" style="font-size:0.78rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Privacy Policy</a>
+    <a href="#" onclick="goLegal('terms');return false;" style="font-size:0.78rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Terms of Use</a>
+    <a href="#" onclick="navigate('legal');return false;" style="font-size:0.78rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Legal</a>
+  </div>
   <span class="footer-copy">© 2026 Navichara. All rights reserved.</span>
 </footer>
 
 <script>
 // ── NAVIGATION ──
-function navigate(page) {
+const VALID_PAGES = ['home','company','ai','solutions','contact','legal'];
+
+function navigate(page, pushHistory) {
+  if (pushHistory === undefined) pushHistory = true;
+  if (!VALID_PAGES.includes(page)) page = 'home';
+  const target = document.getElementById('page-' + page);
+  if (!target) return;
+
   document.querySelectorAll('.page').forEach(p => {
     p.classList.remove('active', 'page-enter');
   });
-  const target = document.getElementById('page-' + page);
   target.classList.add('active');
   // Force reflow then add animation class
   void target.offsetWidth;
   target.classList.add('page-enter');
   window.scrollTo({ top: 0, behavior: 'instant' });
   setTimeout(observeReveal, 80);
+
+  if (pushHistory) {
+    const url = page === 'home' ? location.pathname + location.search : '#' + page;
+    history.pushState({ page: page }, '', url);
+  }
 }
+
+// ── BACK / FORWARD BUTTON SUPPORT ──
+window.addEventListener('popstate', (e) => {
+  const page = (e.state && e.state.page) || pageFromHash() || 'home';
+  navigate(page, false);
+});
+
+function pageFromHash() {
+  const h = location.hash.replace('#', '');
+  return VALID_PAGES.includes(h) ? h : null;
+}
+
+// Resolve initial page from URL on load, and set a base history state
+(function initFromURL() {
+  const initial = pageFromHash() || 'home';
+  history.replaceState({ page: initial }, '', location.href);
+  if (initial !== 'home') navigate(initial, false);
+})();
 
 // ── HERO VIDEO — HLS STREAM ──
 (function() {
@@ -1636,15 +1944,60 @@ function observeReveal() {
 }
 observeReveal();
 
+// ── LEGAL PAGE SUB-TABS ──
+function goLegal(section) {
+  navigate('legal');
+  showLegal(section);
+}
+function showLegal(section, evt) {
+  document.querySelectorAll('.legal-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('legal-' + section);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
+  if (evt && evt.currentTarget) {
+    evt.currentTarget.classList.add('active');
+  } else {
+    const btn = document.querySelector('.legal-tab[data-section="' + section + '"]');
+    if (btn) btn.classList.add('active');
+  }
+  const panel = document.getElementById('legal-content-top');
+  if (panel) panel.scrollIntoView({ behavior: 'instant', block: 'start' });
+}
+
 // ── FORM SUBMIT ──
 function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('submit-btn').textContent = 'Submitting…';
-  document.getElementById('submit-btn').disabled = true;
-  setTimeout(() => {
-    document.getElementById('submit-btn').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  }, 1000);
+  const form = e.target;
+  const submitBtn = document.getElementById('submit-btn');
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+
+  errorEl.style.display = 'none';
+  submitBtn.textContent = 'Submitting…';
+  submitBtn.disabled = true;
+
+  const formData = new FormData(form);
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json' },
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      submitBtn.style.display = 'none';
+      successEl.style.display = 'block';
+      form.reset();
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
+  })
+  .catch(() => {
+    submitBtn.textContent = 'Submit';
+    submitBtn.disabled = false;
+    errorEl.style.display = 'block';
+  });
 }
 // ── MOBILE MENU ──
 function openMobMenu() {
