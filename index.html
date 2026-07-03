@@ -668,13 +668,13 @@
   .expertise-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
   .expertise-card { display: flex; flex-direction: column; height: 100%; }
   .expertise-card.featured { background: rgba(255,255,255,0.035) !important; }
-  .expertise-card .exp-tags {
+  .exp-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
     margin: 1rem 0;
   }
-  .expertise-card .exp-tags span {
+  .exp-tags span {
     font-size: 0.66rem;
     letter-spacing: 0.03em;
     color: rgba(255,255,255,0.4);
@@ -1517,7 +1517,7 @@
           <p class="exp-closer">Applies to plant floor monitoring, production telemetry, and site surveillance with AI anomaly detection.</p>
         </div>
         <div class="liquid-glass domain-card expertise-card" style="border-radius:1.25rem;padding:1.75rem;">
-          <span class="badge-pill">Revenue-generating · $50M+ ecosystem</span>
+          <span class="badge-pill">Revenue-generating · Multi-year partnerships</span>
           <p class="label-tag">Predictive Analytics &amp; Risk Modelling</p>
           <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;margin:0.75rem 0;">IoT-based risk analytics led at Munich Re/HSB Canada — predictive models assessing equipment failure probability and underwriting risk across industrial portfolios, driving multi-year commercial partnerships.</p>
           <p class="exp-closer">Applies to predictive maintenance, demand forecasting, and vendor risk scoring.</p>
@@ -1591,8 +1591,8 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;" class="company-grid">
         <div class="liquid-glass domain-card" style="border-radius:1.25rem;padding:2rem;">
           <p class="label-tag">Founder · PM · Architect</p>
-          <h3 style="font-size:1.15rem;color:#fff;font-weight:400;margin-bottom:0.75rem;">Abhishek Gupta</h3>
-          <p style="font-size:0.88rem;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:1rem;">18+ years across AI systems, enterprise product, programme delivery, and wireless architecture. Combined background spans IoT commercialisation, multi-million dollar programme management, 5G/6G system design, and agentic AI — across Fortune 500 clients, IIT Kanpur, Munich Re/HSB Canada, Clarity IoT, and Ometaura AI.</p>
+          <h3 style="font-size:1.15rem;color:#fff;font-weight:400;margin-bottom:0.75rem;">Founders</h3>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:1rem;">Combined background spans IoT commercialisation, multi-million dollar programme management, 5G/6G system design, and agentic AI — across Fortune 500 clients, IIT Kanpur, Munich Re/HSB Canada, Clarity IoT, and Ometaura AI.</p>
           <div class="exp-tags" style="margin-bottom:1.25rem;">
             <span>AI &amp; Agentic Systems</span><span>IoT Architecture</span><span>Enterprise GTM</span><span>Predictive Analytics</span><span>Risk Modelling</span><span>Program Management</span><span>Product Delivery</span><span>IoT Platforms</span><span>Cloud &amp; OpenShift</span><span>Telecom LTE/SON</span><span>Mobile App Dev</span><span>AI-Native 5G/6G</span><span>Edge AI</span><span>O-RAN Architecture</span><span>Massive MIMO</span><span>Deep Learning (CNN)</span><span>Python &amp; MATLAB</span>
           </div>
@@ -2159,7 +2159,7 @@ function closeMobMenu() {
   document.getElementById('mob-menu').classList.remove('open');
   document.body.style.overflow = '';
 }
-// Close on ESC 
+// Close on ESC
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobMenu(); });
 
 // ── RESPONSIVE GRIDS ──
