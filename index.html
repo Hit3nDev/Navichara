@@ -104,23 +104,53 @@
     gap: 2rem;
   }
   .nav-links a {
+    position: relative;
     color: rgba(255,255,255,0.75);
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 400;
+    padding: 0.4rem 0;
     transition: color 0.2s;
   }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.25s ease;
+  }
   .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.nav-active { color: #fff; }
+  .nav-links a.nav-active::after { width: 100%; }
   .nav-right { display: flex; align-items: center; gap: 1rem; }
   .nav-cta-text {
+    position: relative;
     color: #fff;
     font-size: 0.875rem;
     font-weight: 400;
     text-decoration: none;
     opacity: 0.8;
+    padding-bottom: 0.4rem;
     transition: opacity 0.2s;
   }
+  .nav-cta-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.25s ease;
+  }
   .nav-cta-text:hover { opacity: 1; }
+  .nav-cta-text:hover::after { width: 100%; }
+  .nav-cta-text.nav-active { opacity: 1; }
+  .nav-cta-text.nav-active::after { width: 100%; }
   .btn-pill {
     border-radius: 9999px;
     padding: 0.5rem 1.5rem;
@@ -395,14 +425,20 @@
   }
   .sol-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
+  @media(max-width:1024px){ .sol-grid { grid-template-columns: 1fr 1fr; } }
   @media(max-width:768px){ .sol-grid { grid-template-columns: 1fr; } }
   .sol-card {
     border-radius: 1.5rem;
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
+    transition: opacity 0.6s ease, transform 0.4s ease, box-shadow 0.3s ease;
+  }
+  .sol-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.35);
   }
   .sol-card-video-wrap {
     position: relative;
@@ -431,17 +467,23 @@
   .sol-title { font-size: 1.25rem; color: #fff; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
   .sol-desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
   .arrow-btn {
-    width: 36px; height: 36px;
+    height: 34px;
+    padding: 0 0.9rem 0 1rem;
     border-radius: 9999px;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; gap: 0.4rem;
     flex-shrink: 0;
     background: transparent;
     border: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.25s ease, background 0.25s ease;
   }
+  .sol-card:hover .arrow-btn { color: #fff; background: rgba(255,255,255,0.08); }
   .sol-card-anim {
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.8s ease, transform 0.5s ease, box-shadow 0.3s ease;
   }
   .sol-card-anim.visible { opacity: 1; transform: translateY(0); }
 
@@ -1101,14 +1143,14 @@
   </a>
   <div class="nav-inner liquid-glass">
     <div class="nav-links">
-      <a href="#" onclick="navigate('home');return false;">Home</a>
-      <a href="#" onclick="navigate('company');return false;">Company</a>
-      <a href="#" onclick="navigate('ai');return false;">AI</a>
-      <a href="#" onclick="navigate('solutions');return false;">Solutions</a>
-      <a href="#" onclick="navigate('contact');return false;">Contact</a>
+      <a href="#" data-page="home" onclick="navigate('home');return false;">Home</a>
+      <a href="#" data-page="company" onclick="navigate('company');return false;">Company</a>
+      <a href="#" data-page="ai" onclick="navigate('ai');return false;">AI</a>
+      <a href="#" data-page="solutions" onclick="navigate('solutions');return false;">Solutions</a>
+      <a href="#" data-page="contact" onclick="navigate('contact');return false;">Contact</a>
     </div>
     <div class="nav-right">
-      <a href="#" class="nav-cta-text" onclick="navigate('legal');return false;" style="opacity:0.55;">Legal</a>
+      <a href="#" class="nav-cta-text" data-page="legal" onclick="navigate('legal');return false;" style="opacity:0.55;">Legal</a>
       <button class="mob-menu-btn" onclick="openMobMenu()" aria-label="Open menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -1121,12 +1163,12 @@
   <button class="mob-close-btn" onclick="closeMobMenu()" aria-label="Close menu">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <a href="#" onclick="closeMobMenu();navigate('home');return false;">Home</a>
-  <a href="#" onclick="closeMobMenu();navigate('company');return false;">Company</a>
-  <a href="#" onclick="closeMobMenu();navigate('ai');return false;">AI</a>
-  <a href="#" onclick="closeMobMenu();navigate('solutions');return false;">Solutions</a>
-  <a href="#" onclick="closeMobMenu();navigate('contact');return false;">Contact</a>
-  <a href="#" onclick="closeMobMenu();navigate('legal');return false;">Legal</a>
+  <a href="#" data-page="home" onclick="closeMobMenu();navigate('home');return false;">Home</a>
+  <a href="#" data-page="company" onclick="closeMobMenu();navigate('company');return false;">Company</a>
+  <a href="#" data-page="ai" onclick="closeMobMenu();navigate('ai');return false;">AI</a>
+  <a href="#" data-page="solutions" onclick="closeMobMenu();navigate('solutions');return false;">Solutions</a>
+  <a href="#" data-page="contact" onclick="closeMobMenu();navigate('contact');return false;">Contact</a>
+  <a href="#" data-page="legal" onclick="closeMobMenu();navigate('legal');return false;">Legal</a>
 </div>
 
 <!-- ════════════════ PAGE: HOME ════════════════ -->
@@ -1243,6 +1285,7 @@
             <div class="sol-tag-row">
               <span class="label-tag" style="margin:0;">Moto Club</span>
               <span class="arrow-btn liquid-glass">
+                Explore
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </span>
             </div>
@@ -1259,11 +1302,28 @@
             <div class="sol-tag-row">
               <span class="label-tag" style="margin:0;">Smart Helmet</span>
               <span class="arrow-btn liquid-glass">
+                Explore
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </span>
             </div>
             <h3 class="sol-title">Intelligent Wearable</h3>
             <p class="sol-desc">Protection meets intelligence. A next-generation helmet system that integrates connected technology with real-world rider safety.</p>
+          </div>
+        </div>
+        <div class="sol-card liquid-glass sol-card-anim" style="transition-delay:0.3s;cursor:pointer;" onclick="navigate('ai');return false;">
+          <div class="sol-card-video-wrap" style="background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.09), transparent 60%), #0d0d0d;display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:4rem;color:rgba(255,255,255,0.14);letter-spacing:-0.02em;">AI</span>
+          </div>
+          <div class="sol-body">
+            <div class="sol-tag-row">
+              <span class="label-tag" style="margin:0;">Navichara AI</span>
+              <span class="arrow-btn liquid-glass">
+                Explore
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </span>
+            </div>
+            <h3 class="sol-title">AI-Native Transformation</h3>
+            <p class="sol-desc">From agentic systems to enterprise infrastructure — the AI capability behind everything we build.</p>
           </div>
         </div>
       </div>
@@ -2028,6 +2088,10 @@ function navigate(page, pushHistory) {
   window.scrollTo({ top: 0, behavior: 'instant' });
   setTimeout(observeReveal, 80);
 
+  document.querySelectorAll('[data-page]').forEach(el => {
+    el.classList.toggle('nav-active', el.getAttribute('data-page') === page);
+  });
+
   if (pushHistory) {
     const url = page === 'home' ? location.pathname + location.search : '#' + page;
     history.pushState({ page: page }, '', url);
@@ -2049,7 +2113,7 @@ function pageFromHash() {
 (function initFromURL() {
   const initial = pageFromHash() || 'home';
   history.replaceState({ page: initial }, '', location.href);
-  if (initial !== 'home') navigate(initial, false);
+  navigate(initial, false);
 })();
 
 // ── HERO VIDEO — HLS STREAM ──
